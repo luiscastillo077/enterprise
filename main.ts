@@ -40,6 +40,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 info.onLifeZero(function () {
     Enterprise.destroy(effects.disintegrate, 500)
+    game.over(false)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
