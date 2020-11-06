@@ -19,6 +19,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         `, Enterprise, 100, 0)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    music.pewPew.play()
     Faser = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -37,6 +38,12 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, Enterprise, 100, 0)
+})
+sprites.onOverlap(SpriteKind.Food, SpriteKind.Player, function (sprite, otherSprite) {
+    Plasma.destroy(effects.ashes, 500)
+    music.magicWand.play()
+    info.changeLifeBy(1)
+    info.changeScoreBy(2)
 })
 info.onLifeZero(function () {
     Enterprise.destroy(effects.disintegrate, 500)
