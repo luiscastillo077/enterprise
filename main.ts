@@ -53,6 +53,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     info.changeLifeBy(-1)
 })
 let Romulano: Sprite = null
+let Plasma: Sprite = null
 let Faser: Sprite = null
 let Torpedo: Sprite = null
 let Enterprise: Sprite = null
@@ -80,6 +81,28 @@ Enterprise.setPosition(0, 58)
 info.setLife(3)
 info.setScore(0)
 controller.moveSprite(Enterprise, 200, 200)
+game.onUpdateInterval(5000, function () {
+    Plasma = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . c . . . . . . . . 
+        . . . . c a a a c . . . . . . . 
+        . . . c c f a b b c . . . . . . 
+        . . . b f f b f a a . . . . . . 
+        . . . b b a b f f a . . . . . . 
+        . . . c b f b b a c . . . . . . 
+        . . . . b a f c c . . . . . . . 
+        . . . . . b b c . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Food)
+    Plasma.setVelocity(-50, 0)
+    Plasma.setPosition(163, randint(2, 118))
+})
 forever(function () {
     if (info.score() == 100) {
         game.over(true, effects.confetti)
